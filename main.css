@@ -1,0 +1,23 @@
+body {}
+
+#gameBody {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.column {
+    width: 20px;
+    height: 20px;
+}
+
+#submitGuess {
+    padding: 2px;
+    border: 1px solid black;
+}
+
+#inputArea {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
