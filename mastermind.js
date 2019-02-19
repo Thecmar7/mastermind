@@ -150,7 +150,7 @@ var game = (function() {
                 result.push(1);
             }
         }
-        return result.sort();
+        return result.sort(function(a, b) { return b - a });
     }
 
     /**
