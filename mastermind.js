@@ -113,6 +113,10 @@ var game = (function() {
         if (!currentGuess.includes(guessedNum)) {
             currentGuess[selected] = guessedNum;
             moveSelected();
+        } else {
+            var swap = currentGuess[currentGuess.indexOf(guessedNum)];
+            currentGuess[currentGuess.indexOf(guessedNum)] = currentGuess[selected];
+            currentGuess[selected] = swap;
         }
         updateGuessedDisplay();
         updateDisplay();
