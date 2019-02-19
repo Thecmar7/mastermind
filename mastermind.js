@@ -3,7 +3,8 @@ var game = (function() {
     var maxItems = 8;
     var pattern = [];
     var guesses = [];
-    var currentGuess = [];
+    var currentGuess = [0, 0, 0, 0, ];
+    var selected = 1;
 
     var colors = {
         0: 'brown',
@@ -17,6 +18,16 @@ var game = (function() {
         8: 'black'
     }
 
+    function setSelected(num) {
+        selected = num;
+    }
+
+
+    /**
+     * choosePattern
+     *
+     * Chooses a pattern at the start of the game
+     */
     function choosePattern() {
         patternSet = new Set([]);
         while (patternSet.size < 4) {
@@ -26,6 +37,11 @@ var game = (function() {
         pattern = Array.from(patternSet);
     }
 
+    /**
+     * updateColor
+     * 
+     * Sets all the numbers to be the correct color based on the color object above
+     */
     function updateColor() {
         var columns = document.getElementsByClassName('column');
         for (var i = 0; i < columns.length; i++) {
@@ -35,37 +51,58 @@ var game = (function() {
         }
     }
 
-
-
-    function updateGuessedDisplay() {
-        if (currentGuess.length >= 1) {
-            $('#guessed1').html(currentGuess[0]);
-        } else {
-            $('#guessed1').html('-');
-        }
-        if (currentGuess.length >= 2) {
-            $('#guessed2').html(currentGuess[1]);
-        } else {
-            $('#guessed2').html('-');
-        }
-        if (currentGuess.length >= 3) {
-            $('#guessed3').html(currentGuess[2]);
-        } else {
-            $('#guessed3').html('-');
-        }
-        if (currentGuess.length >= 4) {
-            $('#guessed4').html(currentGuess[3]);
-        } else {
-            $('#guessed4').html('-');
+    /**
+     * updateDisplay
+     * 
+     * Sets all the numbers to be the correct color based on the color object above
+     * and sets all the 0s to dashes
+     */
+    function updateDisplay() {
+        var columns = document.getElementsByClassName('column');
+        for (var i = 0; i < columns.length; i++) {
+            cell = columns[i];
+            if (cell.innerHTML == 0) {
+                cell.innerHTML = "-";
+            }
+            color = colors[parseInt(cell.innerHTML)];
+            if (cell.id == ('guessed' + selected)) {
+                cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " +
+                    colors[parseInt(cell.innerHTML)] + "; border: lightgray solid 2px;"
+            } else {
+                cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " + colors[parseInt(cell.innerHTML)] + ";"
+            }
         }
     }
 
+    function highlightSelection(rowNum, clicked) {
+        var columns = document.querySelectorAll(".guessed");
+        for (var i = 0; i < columns.length; i++) {
+            columns[i].style = "font-weight:none;";
+        }
+        clicked.style = ""
+        updateDisplay();
+    }
+
+    /**
+     *  updateGuessedDisplay
+     *
+     * 
+     */
+    function updateGuessedDisplay() {
+        $('#guessed1').html(currentGuess[0]);
+        $('#guessed2').html(currentGuess[1]);
+        $('#guessed3').html(currentGuess[2]);
+        $('#guessed4').html(currentGuess[3]);
+        updateDisplay();
+    }
+
     function guessPart(guessedNum) {
+
         if (!currentGuess.includes(guessedNum)) {
-            currentGuess.push(guessedNum);
+            currentGuess[selected - 1] = guessedNum;
         }
         updateGuessedDisplay();
-        updateColor();
+        updateDisplay();
     }
 
     function guessResult() {
@@ -80,6 +117,11 @@ var game = (function() {
         return result.sort();
     }
 
+    /**
+     * submitGuess
+     * 
+     * compares the current guess to the chosen pattern and sets up the 
+     */
     function submitGuess() {
         if (currentGuess.length == 4) {
             guesses.push(currentGuess);
@@ -97,19 +139,25 @@ var game = (function() {
             $('#row' + guesses.length).find('.result').html(result.toString());
         }
 
-        currentGuess = [];
+        currentGuess = [0, 0, 0, 0];
         updateGuessedDisplay();
-        updateColor();
+        updateDisplay();
         if (guesses.length >= 12) {
             $('#result').html("YOU LOSE!");
         }
 
     }
 
-    function removeGuessPart(removedPart) {
-        currentGuess.splice(removedPart - 1, 1);
-        updateGuessedDisplay();
-        updateColor();
+
+    /**
+     * selectGuessSection
+     *
+     * @param {*} number
+     * @param {*} elementSelected
+     */
+    function selectGuessSection(number, elementSelected) {
+        setSelected(number);
+        updateDisplay();
     }
 
     function setupButtons() {
@@ -120,13 +168,15 @@ var game = (function() {
             submitGuess()
         })
         $('.guessed').click(function() {
-            removeGuessPart(parseInt(this.getAttribute("data-number")))
-        })
+            var selectedGuessedBtnNum = parseInt(this.getAttribute("data-number"));
+            selectGuessSection(selectedGuessedBtnNum, this);
+            // highlightSelection(selectedGuessedBtnNum, this);
 
+        })
     }
 
     function startGame() {
-        updateColor();
+        updateDisplay();
         choosePattern();
         setupButtons();
 
