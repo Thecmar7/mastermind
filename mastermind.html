@@ -10,7 +10,7 @@
 <body>
     <div id=gameBody>
         <h1>master mind</h1>
-        <table>
+        <table id=gameTable>
             <tbody>
                 <tr id=row1>
                     <td class='column col1' data-number=1>-</td>
@@ -101,22 +101,18 @@
         <p id=result></p>
         <hr>
         <div id=inputArea>
-            <table>
+            <table id=guessTable>
                 <tbody>
                     <tr>
+                        <td class='column guessed' id=guessed0 data-number=0>-</td>
                         <td class='column guessed' id=guessed1 data-number=1>-</td>
                         <td class='column guessed' id=guessed2 data-number=2>-</td>
                         <td class='column guessed' id=guessed3 data-number=3>-</td>
-                        <td class='column guessed' id=guessed4 data-number=4>-</td>
-                        <td>
-                            <div id=submitGuess> Guess </div>
-                        </td>
                     </tr>
                 </tbody>
             </table>
 
-
-            <table>
+            <table id=colorTable>
                 <tbody>
                     <tr>
                         <td class='guessBtn column' data-number=1>1</td>
@@ -133,6 +129,8 @@
                 </tbody>
             </table>
         </div>
+        <div id=submitGuess> Guess </div>
+
     </div>
 </body>
 

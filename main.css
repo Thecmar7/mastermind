@@ -7,17 +7,45 @@ body {}
 }
 
 .column {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    text-align: center;
+    padding: 3px;
 }
 
 #submitGuess {
     padding: 2px;
-    border: 1px solid black;
+    height: 55px;
+    width: 45px;
+    margin-left: 20px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    float: left;
+    margin-top: 15px;
+    padding-top: 40px;
 }
 
 #inputArea {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
+    /* width: 100px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin-right: 0px;
+    /* display: inline; */
+    float: left;
+}
+
+#inputArea>table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#gameTable {
+    margin-left: 20px;
+}
+
+#colorTable,
+#guessTable {
+    margin-left: 15px;
 }
