@@ -68,6 +68,8 @@ var game = (function() {
             if (cell.id == ('guessed' + selected)) {
                 cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " +
                     colors[parseInt(cell.innerHTML)] + "; border: lightgray solid 3px;"
+            } else if (cell.innerHTML == '-') {
+                cell.style = "border:1px solid grey;";
             } else {
                 cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " + colors[parseInt(cell.innerHTML)] + ";"
             }
