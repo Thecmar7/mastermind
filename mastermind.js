@@ -58,7 +58,6 @@ var game = (function() {
      * and sets all the 0s to dashes
      */
     function updateDisplay() {
-        console.log(currentGuess);
         var columns = document.getElementsByClassName('column');
         for (var i = 0; i < columns.length; i++) {
             cell = columns[i];
