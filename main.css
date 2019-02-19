@@ -1,4 +1,6 @@
-body {}
+body {
+    font-family: 'Courier New', Courier, monospace
+}
 
 #gameBody {
     width: 300px;
@@ -17,7 +19,7 @@ body {}
 #submitGuess {
     padding: 2px;
     height: 55px;
-    width: 45px;
+    width: 55px;
     margin-left: 20px;
     text-align: center;
     border: 2px solid black;
@@ -28,11 +30,7 @@ body {}
 }
 
 #inputArea {
-    /* width: 100px; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
     margin-right: 0px;
-    /* display: inline; */
     float: left;
 }
 

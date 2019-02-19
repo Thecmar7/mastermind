@@ -95,8 +95,7 @@ var game = (function() {
         } else {
             if (selected != 3 && currentGuess[selected + 1] == 0) {
                 moveBy = 1;
-            }
-            if (selected == 3 && currentGuess[selected - 1] == 0) {
+            } else if (selected != 0 && currentGuess[selected - 1] == 0) {
                 moveBy = -1;
             }
         }
