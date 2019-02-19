@@ -5,9 +5,9 @@ var game = (function() {
     var guesses = [];
     var currentGuess = [0, 0, 0, 0];
     var selected = 0;
+    var chosenColorPalette = 1;
 
-    var colors = {
-        0: 'brown',
+    var colors1 = {
         1: 'pink',
         2: 'red',
         3: 'yellow',
@@ -16,6 +16,28 @@ var game = (function() {
         6: 'blue',
         7: 'green',
         8: 'black'
+    }
+
+    var colors2 = {
+        1: '#a2b9bc',
+        2: '#b2ad7f',
+        3: '#878f99',
+        4: '#6b5b95',
+        5: '#6b5b95',
+        6: '#feb236',
+        7: '#d64161',
+        8: '#ff7b25'
+    }
+
+    var colors3 = {
+        8: '#d5e1df',
+        1: '#e3eaa7',
+        2: '#b5e7a0',
+        3: '#86af49',
+        4: '#b9936c',
+        5: '#dac292',
+        6: '#e6e2d3',
+        7: '#c4b7a6'
     }
 
     function setSelected(num) {
@@ -38,20 +60,6 @@ var game = (function() {
     }
 
     /**
-     * updateColor
-     * 
-     * Sets all the numbers to be the correct color based on the color object above
-     */
-    function updateColor() {
-        var columns = document.getElementsByClassName('column');
-        for (var i = 0; i < columns.length; i++) {
-            cell = columns[i];
-            color = colors[parseInt(cell.innerHTML)];
-            cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " + colors[parseInt(cell.innerHTML)] + ";"
-        }
-    }
-
-    /**
      * updateDisplay
      * 
      * Sets all the numbers to be the correct color based on the color object above
@@ -64,14 +72,14 @@ var game = (function() {
             if (cell.innerHTML == 0) {
                 cell.innerHTML = "-";
             }
-            color = colors[parseInt(cell.innerHTML)];
+            color = colors2[parseInt(cell.innerHTML)];
             if (cell.id == ('guessed' + selected)) {
-                cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " +
-                    colors[parseInt(cell.innerHTML)] + "; border: lightgray solid 3px;"
+                cell.style = "color: " + color + "; background-color: " +
+                    color + "; border: lightgray solid 3px;"
             } else if (cell.innerHTML == '-') {
                 cell.style = "border:1px solid lightgray;";
             } else {
-                cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " + colors[parseInt(cell.innerHTML)] + ";"
+                cell.style = "color: " + color + "; background-color: " + color + ";"
             }
         }
     }
