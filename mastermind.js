@@ -69,7 +69,7 @@ var game = (function() {
                 cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " +
                     colors[parseInt(cell.innerHTML)] + "; border: lightgray solid 3px;"
             } else if (cell.innerHTML == '-') {
-                cell.style = "border:1px solid grey;";
+                cell.style = "border:1px solid lightgray;";
             } else {
                 cell.style = "color: " + colors[parseInt(cell.innerHTML)] + "; background-color: " + colors[parseInt(cell.innerHTML)] + ";"
             }
