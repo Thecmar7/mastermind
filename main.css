@@ -48,3 +48,8 @@ body {
 #guessTable {
     margin-left: 15px;
 }
+
+#guessTable>tbody>tr>td.guessed {
+    width: 19px;
+    height: 17px;
+}
